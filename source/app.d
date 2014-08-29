@@ -16,10 +16,6 @@ shared static this()
 }
 
 class WebInterface {
-	private {
-		// stored in the session store
-		//SessionVar!(bool, "authenticated") ms_authenticated;
-	}
 
 	this(){
 		styles = ["default"];
@@ -29,7 +25,6 @@ class WebInterface {
 	{
 		auto code = "";
 		render!("index.dt", styles, code);
-		//renderCompat!("index.dt", string[], "styles")(styles);
 	}
 
 	void post(string style, string code)
@@ -45,10 +40,6 @@ class WebInterface {
 		pipes.stdin.write(code);
 		pipes.stdin.close;
 		pipes.pid.wait;
-
-		//char[] buf = new char[min(code.length * 2, 1048576)];
-
-		//code = pipes.stdout.byChunk(4096).joiner.array.map(v => v.to!char).to!string;
 
 		code = pipes.stdout.byLine.joiner("\r\n").to!string;
 
