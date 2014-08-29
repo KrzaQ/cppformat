@@ -1,16 +1,22 @@
+- void css(string file)
+	link(rel= 'stylesheet', type='text/css', href='styles/#{file}.css')
+
 doctype html
 html
 	head
 		title C++ formatter (based on clang-format)
+		- css("style");
 	body
-		form(action="/", method="POST")
-			p Style:
-			select(name="style")
-				- foreach(i,o; styles)
-					//- option(value=o #{(i==4)?",selected",""}) #{o}
-					- if(i == 4)
-						option(value=o, selected) #{o}
-					- else
-						option(value=o) #{o}
-			textarea(name="code") #{code}
-			button(type="submit") Format!
+		#main
+			form(action="/", method="POST")
+				textarea(name="code")#data #{code}
+				br
+				button(type="submit")#submitButton Format!
+				select(name="style")#styleSelect
+					- foreach(o; styles)
+						//- option(value=o, selected=((i==4)?"true":"false")) #{o}
+						- if(o == selectedStyle)
+							option(value=o, selected) #{o}
+						- else
+							option(value=o) #{o}
+				span#styleLabel Style:

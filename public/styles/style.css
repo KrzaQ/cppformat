@@ -1,0 +1,29 @@
+body {font-size: 10pt; font-family: Arial, Helvetica; font-weight: normal; background-color: #303030; color: #808080; }
+textarea {color: #BBBBBB; font-style: italic; background-color: #282828; }
+legend {font-size: 10pt; font-family: Arial, Helvetica; font-weight: bold; color: #808080; }
+			
+#main {
+	margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+}
+
+#data {
+	width: 100%;
+	height: 600px;
+}
+
+#styleLabel {
+	/*text-align: right;*/
+	float: right;
+}
+
+#styleSelect {
+	/*text-align: right;*/
+	float: right;
+}
+
+#submitButton {
+	/*text-align: right;*/
+	float: right;
+}
