@@ -1,0 +1,10 @@
+*.[oa]
+*.so
+*.lib
+*.dll
+.*.sw*
+.dub
+docs.json
+__dummy.html
+*.o
+*.obj
