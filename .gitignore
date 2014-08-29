@@ -8,3 +8,8 @@ docs.json
 __dummy.html
 *.o
 *.obj
+*.sublime-project
+/*.exe
+/*.sublime-workspace
+/source/sftp-config.json
+sftp-config.json
