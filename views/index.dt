@@ -1,0 +1,12 @@
+doctype html
+html
+	head
+		title C++ formatter (based on clang-format)
+	body
+		form(action="/", method="POST")
+			p Style:
+			select(name="style")
+				- foreach(o; styles)
+					option(value=o) #{o}
+			textarea(name="code") #{code}
+			button(type="submit") Format!
