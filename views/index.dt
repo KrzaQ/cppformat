@@ -6,7 +6,11 @@ html
 		form(action="/", method="POST")
 			p Style:
 			select(name="style")
-				- foreach(o; styles)
-					option(value=o) #{o}
+				- foreach(i,o; styles)
+					//- option(value=o #{(i==4)?",selected",""}) #{o}
+					- if(i == 4)
+						option(value=o, selected) #{o}
+					- else
+						option(value=o) #{o}
 			textarea(name="code") #{code}
 			button(type="submit") Format!

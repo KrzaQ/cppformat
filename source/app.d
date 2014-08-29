@@ -4,7 +4,7 @@ shared static this()
 {
 	auto settings = new HTTPServerSettings;
 	settings.port = 8080;
-	settings.bindAddresses = ["::1", "127.0.0.1"];
+	settings.bindAddresses = ["::1", "0.0.0.0"];
 
 	auto router = new URLRouter;
 
@@ -18,7 +18,7 @@ shared static this()
 class WebInterface {
 
 	this(){
-		styles = ["default"];
+		styles = [ "LLVM", "Google", "Chromium", "Mozilla", "WebKit"];
 	}
 
 	void index()
@@ -34,14 +34,14 @@ class WebInterface {
 		import std.conv;
 		import std.math;
 		import std.process;
-		auto pipes = pipeProcess("clang-format", Redirect.stdout | Redirect.stdin);
+		auto pipes = pipeProcess(["clang-format", "style="~style], Redirect.stdout | Redirect.stdin);
 		scope(exit) wait(pipes.pid);
 
 		pipes.stdin.write(code);
 		pipes.stdin.close;
 		pipes.pid.wait;
 
-		code = pipes.stdout.byLine.joiner("\r\n").to!string;
+		code = pipes.stdout.byLine.joiner.to!string;
 
 		render!("index.dt", styles, code);
 	}
