@@ -9,6 +9,7 @@ shared static this()
 	auto router = new URLRouter;
 
 	router.registerWebInterface(new WebInterface);
+	router.get("*", serveStaticFiles("public/"));
 
 	listenHTTP(settings, router);
 
@@ -24,7 +25,8 @@ class WebInterface {
 	void index()
 	{
 		auto code = "";
-		render!("index.dt", styles, code);
+		auto selectedStyle = "WebKit";
+		render!("index.dt", styles, code, selectedStyle);
 	}
 
 	void post(string style, string code)
@@ -34,7 +36,7 @@ class WebInterface {
 		import std.conv;
 		import std.math;
 		import std.process;
-		auto pipes = pipeProcess(["clang-format", "style="~style], Redirect.stdout | Redirect.stdin);
+		auto pipes = pipeProcess(["clang-format", "-style="~style], Redirect.stdout | Redirect.stdin);
 		scope(exit) wait(pipes.pid);
 
 		pipes.stdin.write(code);
@@ -43,7 +45,9 @@ class WebInterface {
 
 		code = pipes.stdout.byLine.joiner.to!string;
 
-		render!("index.dt", styles, code);
+		string selectedStyle = style;
+
+		render!("index.dt", styles, code, selectedStyle);
 	}
 
 	string[] styles;
