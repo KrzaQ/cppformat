@@ -1,6 +1,12 @@
-body {font-size: 10pt; font-family: Arial, Helvetica; font-weight: normal; background-color: #303030; color: #808080; }
-textarea {color: #BBBBBB; font-style: italic; background-color: #282828; }
-legend {font-size: 10pt; font-family: Arial, Helvetica; font-weight: bold; color: #808080; }
+body {
+	font-size: 10pt;
+	font-family: Arial, Helvetica;
+	font-weight: normal;
+	background-color: #303030;
+	color: #808080;
+}
+
+/*legend {font-size: 10pt; font-family: Arial, Helvetica; font-weight: bold; color: #808080; }*/
 			
 #main {
 	margin-left: auto;
@@ -11,6 +17,9 @@ legend {font-size: 10pt; font-family: Arial, Helvetica; font-weight: bold; color
 #data {
 	width: 100%;
 	height: 600px;
+	color: #CCCCCC;
+	font-style: italic;
+	background-color: #282828; 
 }
 
 #styleLabel {
@@ -27,3 +36,19 @@ legend {font-size: 10pt; font-family: Arial, Helvetica; font-weight: bold; color
 	/*text-align: right;*/
 	float: right;
 }
+
+#footer {
+	text-align: center;
+	color: #EEE;
+	font-size: x-small;
+}
+
+#footer a:link {
+	color: #DDD;
+}
+
+#footer a:visited {
+	color: #BBB;
+}
+
+

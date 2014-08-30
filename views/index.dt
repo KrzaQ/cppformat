@@ -4,7 +4,7 @@
 doctype html
 html
 	head
-		title C++ formatter (based on clang-format)
+		title C++ code formatter (based on clang-format)
 		- css("style");
 	body
 		#main
@@ -20,3 +20,9 @@ html
 						- else
 							option(value=o) #{o}
 				span#styleLabel Style:
+		br
+		#footer
+			:markdown
+				[C++ online code formatter](https://github.com/KrzaQ/cppformat) © 2014 by [KrzaQ](http://dev.krzaq.cc)
+
+				Powered by [vibe.d](http://vibed.org/), [the D language](http://dlang.org) and [clang-format](http://clang.llvm.org/docs/ClangFormat.html)
