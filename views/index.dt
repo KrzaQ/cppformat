@@ -14,7 +14,6 @@ html
 				button(type="submit")#submitButton Format!
 				select(name="style")#styleSelect
 					- foreach(o; styles)
-						//- option(value=o, selected=((i==4)?"true":"false")) #{o}
 						- if(o == selectedStyle)
 							option(value=o, selected) #{o}
 						- else
