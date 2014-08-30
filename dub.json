@@ -1,8 +1,8 @@
 {
 	"name": "cppformat",
 	"description": "A simple vibe.d server application.",
-	"copyright": "Copyright © 2014, pzakrzewski",
-	"authors": ["pzakrzewski"],
+	"copyright": "Copyright © 2014, krzaq",
+	"authors": ["krzaq"],
 	"dependencies": {
 		"vibe-d": "~master"
 	},
