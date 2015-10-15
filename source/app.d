@@ -17,7 +17,7 @@ shared static this()
 class WebInterface {
 
 	this(){
-		styles = [ "LLVM", "Google", "Chromium", "Mozilla", "WebKit"];
+		styles = [ "LLVM", "Google", "Chromium", "Mozilla", "WebKit", "file"];
 	}
 
 	void index()
@@ -34,14 +34,30 @@ class WebInterface {
 		import std.conv;
 		import std.math;
 		import std.process;
-		auto pipes = pipeProcess(["clang-format", "-style="~style], Redirect.stdout | Redirect.stdin);
-		scope(exit) wait(pipes.pid);
 
-		pipes.stdin.write(code);
-		pipes.stdin.close;
-		pipes.pid.wait;
+		import pipedprocess;
 
-		code = pipes.stdout.byLine.joiner.to!string;
+		PipedProcess p = new PipedProcess("clang-format", ["-style="~style]);
+
+		p.stdin.write(code);
+		p.stdin.finalize;
+
+		code = "";
+
+		for(ulong toRead = 0; toRead > 0 || p.stdout.connected; toRead = p.stdout.leastSize){
+			ubyte[] buf = new ubyte[toRead];
+			p.stdout.read(buf);
+			code ~= buf;
+		}
+
+		//auto pipes = pipeProcess(["clang-format", "-style="~style], Redirect.stdout | Redirect.stdin);
+		//scope(exit) wait(pipes.pid);
+
+		//pipes.stdin.write(code);
+		//pipes.stdin.close;
+		//pipes.pid.wait;
+
+		//code = pipes.stdout.byLine.joiner.to!string;
 
 		string selectedStyle = style;
 
