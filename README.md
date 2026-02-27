@@ -1,6 +1,6 @@
 # What is this?
 - - -
-A web wrapper for clang-format. You can see it in action [here](http://format.krzaq.cc/).
+A web wrapper for clang-format. You can see it in action [here](https://format.krzaq.cc/).
 
 # Installation
 - - -

@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A web-based C++ code formatter written in D using the vibe.d framework. It provides an HTTP interface to `clang-format`, allowing users to format C++ code in their browser with various predefined styles (LLVM, Google, Chromium, Mozilla, WebKit, file).
 
-Hosted at http://format.krzaq.cc/
+Hosted at https://format.krzaq.cc/
 
 ## Build Commands
 

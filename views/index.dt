@@ -22,6 +22,6 @@ html
 		br
 		#footer
 			:markdown
-				[C++ online code formatter](https://github.com/KrzaQ/cppformat) © 2014-2026 by [KrzaQ](http://dev.krzaq.cc)
+				[C++ online code formatter](https://github.com/KrzaQ/cppformat) © 2014-2026 by [KrzaQ](https://dev.krzaq.cc)
 
-				Powered by [vibe.d](http://vibed.org/), [the D language](http://dlang.org) and [clang-format](http://clang.llvm.org/docs/ClangFormat.html)
+				Powered by [vibe.d](https://vibed.org/), [the D language](https://dlang.org) and [clang-format](https://clang.llvm.org/docs/ClangFormat.html)
