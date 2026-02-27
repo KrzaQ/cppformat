@@ -1,7 +1,7 @@
 {
 	"name": "cppformat",
 	"description": "A simple vibe.d server application.",
-	"copyright": "Copyright © 2014, krzaq",
+	"copyright": "Copyright © 2014-2026, krzaq",
 	"authors": ["krzaq"],
 	"dependencies": {
 		"vibe-d": "~>0.10.3"
