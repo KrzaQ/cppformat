@@ -1,6 +1,6 @@
-import vibe.d;
+import vibe.vibe;
 
-shared static this()
+void main()
 {
 	auto settings = new HTTPServerSettings;
 	settings.port = 8080;
@@ -12,6 +12,7 @@ shared static this()
 	router.get("*", serveStaticFiles("public/"));
 
 	listenHTTP(settings, router);
+	runApplication();
 }
 
 class WebInterface {
@@ -49,15 +50,6 @@ class WebInterface {
 			p.stdout.read(buf);
 			code ~= buf;
 		}
-
-		//auto pipes = pipeProcess(["clang-format", "-style="~style], Redirect.stdout | Redirect.stdin);
-		//scope(exit) wait(pipes.pid);
-
-		//pipes.stdin.write(code);
-		//pipes.stdin.close;
-		//pipes.pid.wait;
-
-		//code = pipes.stdout.byLine.joiner.to!string;
 
 		string selectedStyle = style;
 

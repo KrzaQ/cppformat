@@ -1,9 +1,11 @@
 import core.thread;
+import core.sync.condition;
+import core.sync.mutex;
 
 import std.datetime;
 import std.process;
 
-import vibe.d;
+import vibe.vibe;
 import vibe.stream.stdio;
 
 class PipedProcess {
@@ -16,8 +18,8 @@ class PipedProcess {
 		SysTime m_startTime;
 		SysTime m_endTime;
 
-		core.sync.mutex.Mutex m_statusMutex;
-		core.sync.condition.Condition m_statusCondition;
+		Mutex m_statusMutex;
+		Condition m_statusCondition;
 		bool m_running = true;
 		bool m_failed;
 		int m_returnCode;
@@ -33,7 +35,7 @@ class PipedProcess {
 		m_command = cmd;
 		m_args = args;
 		m_startTime = Clock.currTime();
-		m_statusMutex = new core.sync.mutex.Mutex;
+		m_statusMutex = new Mutex;
 		m_statusCondition = new TaskCondition(m_statusMutex);
 		m_stdin = new StdFileStream(false, true);
 		m_stdout = new StdFileStream(true, false);
@@ -75,13 +77,16 @@ class PipedProcess {
 		}
 	}
 
-	private void waitTaskFunc()
+	private void waitTaskFunc() nothrow
 	{
-		synchronized (m_statusMutex) {
-			while (m_running)
-				m_statusCondition.wait();
+		try {
+			synchronized (m_statusMutex) {
+				while (m_running)
+					m_statusCondition.wait();
+			}
+			foreach (del; m_exitCallbacks) del();
+		} catch (Exception e) {
 		}
-		foreach (del; m_exitCallbacks) del();
 	}
 
 	private void waitThreadFunc()
@@ -107,8 +112,6 @@ class PipedProcess {
 				m_returnCode = ret;
 			logTrace("closing pipes");
 			m_stdin.finalize();
-			//m_pipes.stdin.close();
-			//m_pipes.stdout.close();
 		} catch (Exception e) {
 			import std.encoding : sanitize;
 			logError("Failed to execute process: %s", e.msg);

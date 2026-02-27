@@ -9,16 +9,16 @@ html
 	body
 		#main
 			form(action="/", method="POST")
-				textarea(name="code")#data #{code}
+				textarea(name="code", id="data") #{code}
 				br
-				button(type="submit")#submitButton Format!
-				select(name="style")#styleSelect
+				button(type="submit", id="submitButton") Format!
+				select(name="style", id="styleSelect")
 					- foreach(o; styles)
 						- if(o == selectedStyle)
 							option(value=o, selected) #{o}
 						- else
 							option(value=o) #{o}
-				span#styleLabel Style:
+				span(id="styleLabel") Style:
 		br
 		#footer
 			:markdown

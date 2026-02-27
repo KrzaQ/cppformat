@@ -1,0 +1,8 @@
+services:
+  cppformat:
+    image: cppformat
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    read_only: true
+    # mem_limit: 512m

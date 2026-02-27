@@ -1,0 +1,6 @@
+*
+!source/
+!views/
+!public/
+!dub.json
+!dub.selections.json

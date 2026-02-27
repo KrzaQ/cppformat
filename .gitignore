@@ -9,7 +9,10 @@ __dummy.html
 *.o
 *.obj
 *.sublime-project
+/cppformat
 /*.exe
 /*.sublime-workspace
 /source/sftp-config.json
 sftp-config.json
+Makefile.local
+*.tar.gz
